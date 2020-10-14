@@ -38,6 +38,8 @@ project, with many updates and using all the latest approaches developed in
   * `rebar3 lfe repl`
 * Compile LFE source code:
   * `rebar3 lfe compile`
+* Run eunit tests formatted nicely with ltest:
+  * `rebar3 lfe ltest`
 * Run an LFE project's `main/1` function as an lfescript (run `rebar3 new lfe-main` to see an example):
   * `rebar3 lfe run`
   * `rebar3 lfe run -- 1 2 5`
@@ -50,6 +52,8 @@ project, with many updates and using all the latest approaches developed in
   * `rebar3 release`
 * Run an LFE/OTP release project's release script (`COMMAND` can be `start` , `stop` , `status`, `ping`, etc.):
   * `rebar3 lfe run-release COMMAND`
+* Convert an LFE data file into an Erlang one:
+  * `rebar3 lfe confabulate`
 * Cleanup
   * `rebar3 lfe clean`
   * `rebar3 lfe clean-build`
