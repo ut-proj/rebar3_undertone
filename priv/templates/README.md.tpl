@@ -62,12 +62,9 @@ Copyright © {{copyright_year}}, {{author_name}} <{{author_email}}>.
 [gh-actions-badge]: https://github.com/ORG/{{name}}/workflows/Go/badge.svg
 [gh-actions]: https://github.com/ORG/{{name}}/actions
 [lfe]: https://github.com/rvirding/lfe
-[lfe badge]: https://img.shields.io/badge/lfe-1.3.0-blue.svg
+[lfe badge]: https://img.shields.io/badge/lfe-2.0-blue.svg
 [erlang badge]: https://img.shields.io/badge/erlang-19%20to%2023-blue.svg
-[version]: https://github.com/ORG/{{name}}/blob/master/.travis.yml
+[versions]: https://github.com/ORG/{{name}}/blob/master/.travis.yml
 [github tags]: https://github.com/ORG/{{name}}/tags
 [github tags badge]: https://img.shields.io/github/tag/ORG/{{name}}.svg
 [github downloads]: https://img.shields.io/github/downloads/ORG/{{name}}/total.svg
-[hex badge]: https://img.shields.io/hexpm/v/{{name}}.svg?maxAge=2592000
-[hex package]: https://hex.pm/packages/{{name}}
-[hex downloads]: https://img.shields.io/hexpm/dt/{{name}}.svg
