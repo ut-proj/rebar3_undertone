@@ -13,3 +13,4 @@
 {template, "app.lfe.tpl", "{{name}}/src/{{name}}-app.lfe"}.
 {template, "sup.lfe.tpl", "{{name}}/src/{{name}}-sup.lfe"}.
 {template, "app-app.src.tpl", "{{name}}/src/{{name}}.app.src"}.
+{template, "name-test.lfe.tpl", "{{name}}/test/{{name}}-tests.lfe"}.

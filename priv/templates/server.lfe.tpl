@@ -1,19 +1,19 @@
 (defmodule {{name}}
   (behaviour gen_server)
   (export
-    ;; gen_server implementation
-    (start_link 0)
-    (stop 0)
-    ;; callback implementation
-    (init 1)
-    (handle_call 3)
-    (handle_cast 2)
-    (handle_info 2)
-    (terminate 2)
-    (code_change 3)
-    ;; server API
-    (pid 0)
-    (echo 1)))
+   ;; gen_server implementation
+   (start_link 0)
+   (stop 0)
+   ;; callback implementation
+   (init 1)
+   (handle_call 3)
+   (handle_cast 2)
+   (handle_info 2)
+   (terminate 2)
+   (code_change 3)
+   ;; server API
+   (pid 0)
+   (echo 1)))
 
 ;;; ----------------
 ;;; config functions
@@ -49,11 +49,11 @@
 
 (defun handle_call
   (('stop _from state)
-    `#(stop shutdown ok state))
+   `#(stop shutdown ok state))
   ((`#(echo ,msg) _from state)
-    `#(reply ,msg state))
+   `#(reply ,msg state))
   ((message _from state)
-    `#(reply ,(unknown-command) ,state)))
+   `#(reply ,(unknown-command) ,state)))
 
 (defun handle_info
   ((`#(EXIT ,_from normal) state)

@@ -13,6 +13,7 @@
 {template, "app.lfe.tpl", "{{name}}/apps/{{name}}/src/{{name}}-app.lfe"}.
 {template, "sup.lfe.tpl", "{{name}}/apps/{{name}}/src/{{name}}-sup.lfe"}.
 {template, "app-app.src.tpl", "{{name}}/apps/{{name}}/src/{{name}}.app.src"}.
+{template, "name-test.lfe.tpl", "{{name}}/apps/{{name}}/test/{{name}}-tests.lfe"}.
 
 {template, "sys.config.tpl", "{{name}}/config/sys.config"}.
 {template, "vm.args.tpl", "{{name}}/config/vm.args"}.

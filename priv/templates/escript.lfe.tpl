@@ -1,5 +1,6 @@
 (defmodule {{name}}
-  (export (main 1)))
+  (export
+   (main 1)))
 
 ;;; --------------------
 ;;; entry point function
@@ -16,5 +17,5 @@
 
 (defun answer ()
   (lists:reverse 
-    (erlang:integer_to_list 
-      (lists:foldl #'*/2 1 '(1 2 3 4)))))
+   (erlang:integer_to_list 
+    (lists:foldl #'*/2 1 '(1 2 3 4)))))
