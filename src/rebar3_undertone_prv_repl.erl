@@ -8,6 +8,7 @@
 
 -define(PROVIDER, repl).
 -define(DEPS, [{lfe, compile}]).
+-define(DEFAULT_REPL_CONFIG, {lfe_shell,start,[]}).
 
 %% ===================================================================
 %% Public API
@@ -31,8 +32,8 @@ init(State) ->
     ),
     {ok, State1}.
 
-do(Config) ->
-    {ok, repl(Config)}.
+do(State) ->
+    {ok, repl(State)}.
 
 format_error({unknown_app, Unknown}) ->
     io_lib:format("Applications list for repl contains an unrecognizable application definition: ~p", [Unknown]);
@@ -86,15 +87,20 @@ repl(State) ->
     rebar_paths:set_paths([deps, plugins], State),
     rebar_api:debug("\t\tPlain args: ~p", [init:get_plain_arguments()]),
     rebar_api:debug("\t\tSetting shell args ...", []),
-    DefaultREPL = {lfe_shell,start,[]},
-    ShellConfig = rebar_state:get(State, shell, []),
-    rebar_api:debug("\t\tShellConfig: ~p", [ShellConfig]),
-    UTConfig = rebar_state:get(State, undertone, []),
-    rebar_api:debug("\t\tUTConfig: ~p", [UTConfig]), 
-    UTREPLConfig = rebar_state:get(UTConfig, repl, DefaultREPL),
+    UTREPLConfig = get_repl_config(State, ?DEFAULT_REPL_CONFIG),
     rebar_api:debug("\t\tUTREPLConfig: ~p", [UTREPLConfig]),
     REPLConfig = [{shell_args, ['tty_sl -c -e', UTREPLConfig]}],
-    State1 = rebar_state:set(State, shell, lists:append(REPLConfig, ShellConfig)),
+    rebar_api:debug("\t\tREPLConfig: ~p", [REPLConfig]),
+    OldShellConfig = rebar_state:get(State, shell, []),
+    NewShellConfig = lists:append(REPLConfig, OldShellConfig),
+    rebar_api:debug("\t\tOldShellConfig: ~p", [OldShellConfig]),
+    rebar_api:debug("\t\tNewShellConfig: ~p", [NewShellConfig]),
+    NewState = rebar_state:set(State, shell, NewShellConfig),
     rebar_api:debug("\t\tCalling underlying rebar3 shell 'do' function ...", []),
-    rebar_prv_shell:do(State1),
-    State1.
+    rebar_prv_shell:do(NewState),
+    NewState.
+
+get_repl_config(State, Default) ->
+    Cfg = rebar_state:get(State, undertone, []),
+    rebar_api:debug("\t\tundertone config: ~p", [Cfg]), 
+    proplists:get_value(repl, Cfg, Default).
