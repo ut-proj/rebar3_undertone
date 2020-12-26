@@ -78,9 +78,7 @@ opts() ->
 info(Description) ->
   io_lib:format(
         "~n~s~n"
-        "~n"
-        "This is very simular as to what's done with:~n"
-        "\t'lfe -pa ebin -pa deps/*/ebin'.~n",
+        "~n",
         [Description]).
 
 repl(State) ->
@@ -90,8 +88,11 @@ repl(State) ->
     rebar_api:debug("\t\tSetting shell args ...", []),
     DefaultREPL = {lfe_shell,start,[]},
     ShellConfig = rebar_state:get(State, shell, []),
+    rebar_api:debug("\t\tShellConfig: ~p", [ShellConfig]),
     UTConfig = rebar_state:get(State, undertone, []),
+    rebar_api:debug("\t\tUTConfig: ~p", [UTConfig]), 
     UTREPLConfig = rebar_state:get(UTConfig, repl, DefaultREPL),
+    rebar_api:debug("\t\tUTREPLConfig: ~p", [UTREPLConfig]),
     REPLConfig = [{shell_args, ['tty_sl -c -e', UTREPLConfig]}],
     State1 = rebar_state:set(State, shell, lists:append(REPLConfig, ShellConfig)),
     rebar_api:debug("\t\tCalling underlying rebar3 shell 'do' function ...", []),
