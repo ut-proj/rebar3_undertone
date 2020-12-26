@@ -7,7 +7,7 @@
 -include("rebar3_undertone.hrl").
 
 -define(PROVIDER, repl).
--define(DEPS, [compile]).
+-define(DEPS, [{lfe, compile}]).
 
 %% ===================================================================
 %% Public API
