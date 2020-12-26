@@ -1,10 +1,10 @@
--module(rebar3_lfe_prv_repl).
+-module(rebar3_undertone_prv_repl).
 
 -export([init/1,
          do/1,
          format_error/1]).
 
--include("rebar3_lfe.hrl").
+-include("rebar3_undertone.hrl").
 
 -define(PROVIDER, repl).
 -define(DEPS, [compile]).
@@ -23,7 +23,7 @@ init(State) ->
                 {module, ?MODULE},
                 {bare, true},
                 {deps, ?DEPS},
-                {example, "rebar3 lfe repl"},
+                {example, "rebar3 undertone repl"},
                 {short_desc, Description},
                 {desc, info(Description)},
                 {opts, opts()}
@@ -84,12 +84,15 @@ info(Description) ->
         [Description]).
 
 repl(State) ->
-    rebar_api:debug("\tStarting LFE REPL ...", []),
+    rebar_api:debug("\tStarting undertone REPL ...", []),
     rebar_paths:set_paths([deps, plugins], State),
     rebar_api:debug("\t\tPlain args: ~p", [init:get_plain_arguments()]),
     rebar_api:debug("\t\tSetting shell args ...", []),
+    DefaultREPL = {lfe_shell,start,[]},
     ShellConfig = rebar_state:get(State, shell, []),
-    REPLConfig = [{shell_args, ['tty_sl -c -e',{lfe_shell,start,[]}]}],
+    UTConfig = rebar_state:get(State, undertone, []),
+    UTREPLConfig = rebar_state:get(UTConfig, repl, DefaultREPL),
+    REPLConfig = [{shell_args, ['tty_sl -c -e', UTREPLConfig]}],
     State1 = rebar_state:set(State, shell, lists:append(REPLConfig, ShellConfig)),
     rebar_api:debug("\t\tCalling underlying rebar3 shell 'do' function ...", []),
     rebar_prv_shell:do(State1),
