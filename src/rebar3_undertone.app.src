@@ -1,23 +1,23 @@
-{application, rebar3_undertone,
- [{description, "A rebar3 plugin for undertone"},
-  {vsn, "0.1.0-dev"},
+{application, rebar3_undertone, [
+  {description, "A rebar3 plugin for undertone"},
+  {vsn, "0.1.0-rc1"},
   {registered, []},
   {applications, [kernel, stdlib, lfe]},
   {env,[]},
-  {modules, [%% command modules
-             rebar3_undertone_prv_repl,
-             %% main module
-             rebar3_undertone
+  {modules, [
+    %% command modules
+    rebar3_undertone_prv_repl,
+    %% main module
+    rebar3_undertone
   ]},
 
   %% Hex.pm metadata
-  {pkg_name, rebar3_lfe},
+  {pkg_name, rebar3_undertone},
   {licenses, ["Apache 2.0"]},
   {maintainers, ["Duncan McGreggor"]},
-  { links,
-    [ {"GitHub", "https://github.com/ut-proj/rebar3_undertone"},
-      {"Hex", "https://hex.pm/packages/rebar3_undertone"},
-      {"undertone", "https://github.com/ut-proj/undertone"}
-    ]
-  }
- ]}.
+  {links, [
+    {"GitHub", "https://github.com/ut-proj/rebar3_undertone"},
+    {"Hex", "https://hex.pm/packages/rebar3_undertone"},
+    {"undertone", "https://github.com/ut-proj/undertone"}
+  ]}
+]}.
